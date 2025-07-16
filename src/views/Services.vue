@@ -5,8 +5,8 @@
       <div class="text-center mb-12">
         <div class="mb-8">
           <img 
-            src="/images/パソコンを使った作業.png" 
-            alt="パソコンを使った作業の様子"
+            :src="pcWork" 
+            alt="PCを使った作業の様子"
             class="w-full max-w-2xl mx-auto rounded-xl shadow-lg"
           >
         </div>
@@ -104,6 +104,9 @@
 </template>
 
 <script>
+// Import images
+import pcWork from '/images/pc-work.png'
+
 export default {
   name: 'Services',
   data() {

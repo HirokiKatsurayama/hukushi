@@ -5,7 +5,7 @@
       <!-- 背景画像 -->
       <div class="absolute inset-0 z-0">
         <img 
-          src="/images/事業所で作業2.png" 
+          :src="heroImage" 
           alt="事業所での作業風景"
           class="w-full h-full object-cover opacity-40"
         >
@@ -198,7 +198,7 @@
               <!-- 支援員の画像 -->
               <div class="mb-6">
                 <img 
-                  src="/images/支援員が整列してる1.png" 
+                  :src="staffImage" 
                   alt="専門スタッフが揃っています" 
                   class="w-full max-w-md mx-auto rounded-xl shadow-lg"
                 >
@@ -463,10 +463,18 @@
 </template>
 
 <script>
+import heroImage from '/images/office-work2.png'
+import staffImage from '/images/staff-lineup1.png'
+import work1Image from '/images/pc-work.png'
+import work2Image from '/images/office-work1.png'
+import work3Image from '/images/office-work2.png'
+
 export default {
   name: 'Home',
   data() {
     return {
+      heroImage,
+      staffImage,
       searchForm: {
         area: '',
         service: ''
@@ -475,7 +483,7 @@ export default {
         {
           id: 1,
           name: 'さくらワークセンター',
-          image: '/images/パソコンを使った作業.png',
+          image: work1Image,
           rating: 4.5,
           reviewCount: 32,
           description: 'アットホームな雰囲気で、一人ひとりに寄り添った支援を行っています。',
@@ -484,7 +492,7 @@ export default {
         {
           id: 2,
           name: 'みらい就労支援事業所',
-          image: '/images/事業所で作業1.png',
+          image: work2Image,
           rating: 4.8,
           reviewCount: 45,
           description: '最新の設備と充実したプログラムで、確実なスキルアップを支援します。',
@@ -493,7 +501,7 @@ export default {
         {
           id: 3,
           name: 'ステップアップ横浜',
-          image: '/images/事業所で作業2.png',
+          image: work3Image,
           rating: 4.3,
           reviewCount: 28,
           description: '多様な職種の体験ができ、自分に合った仕事を見つけられます。',

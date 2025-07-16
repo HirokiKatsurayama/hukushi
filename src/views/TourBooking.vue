@@ -5,7 +5,7 @@
       <!-- 背景画像 -->
       <div class="absolute inset-0 z-0">
         <img 
-          src="/images/説明会でスーツ.png" 
+          :src="meetingSuit" 
           alt="施設見学・説明会の様子"
           class="w-full h-full object-cover opacity-25"
         >
@@ -518,6 +518,9 @@
 </template>
 
 <script>
+// Import images
+import meetingSuit from '/images/meeting-suit.png'
+
 export default {
   name: 'TourBooking',
   data() {

@@ -5,7 +5,7 @@
       <div class="text-center mb-12">
         <div class="mb-8">
           <img 
-            src="/images/講義.png" 
+            :src="lecture" 
             alt="講義の様子"
             class="w-full max-w-2xl mx-auto rounded-xl shadow-lg"
           >
@@ -127,6 +127,9 @@
 </template>
 
 <script>
+// Import images
+import lecture from '/images/lecture.png'
+
 export default {
   name: 'Guide',
   data() {

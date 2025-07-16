@@ -246,6 +246,16 @@
 </template>
 
 <script>
+// Import images
+import pcWork from '/images/pc-work.png'
+import pcLearning from '/images/pc-learning.png'
+import lecture from '/images/lecture.png'
+import officeWork1 from '/images/office-work1.png'
+import officeWork2 from '/images/office-work2.png'
+import staffLineup1 from '/images/staff-lineup1.png'
+import staffLineup2 from '/images/staff-lineup2.png'
+import meetingSuit from '/images/meeting-suit.png'
+
 export default {
   name: 'Centers',
   data() {
@@ -267,9 +277,9 @@ export default {
           features: ['駅近', 'IT研修', '個別支援', '就職後サポート'],
           description: 'IT分野に特化した就労移行支援事業所です。プログラミングやWebデザインなど、現代社会で需要の高いスキルを身につけることができます。経験豊富なスタッフが一人ひとりの特性に合わせたサポートを提供します。',
           images: [
-            '/images/パソコンを使った作業.png',
-            '/images/パソコンを使った学習.png',
-            '/images/講義.png'
+            pcWork,
+            pcLearning,
+            lecture
           ]
         },
         {
@@ -282,9 +292,9 @@ export default {
           features: ['製造業', '時給保証', 'スキルアップ', '交通費支給'],
           description: '製造業務を中心とした就労継続支援A型事業所です。時給制で安定した収入を得ながら、製造技術を学び、将来の一般就労を目指すことができます。',
           images: [
-            '/images/事業所で作業1.png',
-            '/images/事業所で作業2.png',
-            '/images/支援員が整列してる1.png'
+            officeWork1,
+            officeWork2,
+            staffLineup1
           ]
         },
         {
@@ -297,9 +307,9 @@ export default {
           features: ['事務訓練', '接客研修', '資格取得支援', '企業実習'],
           description: '事務職や接客業への就労を目指す方のための支援事業所です。実際の職場に近い環境で訓練を行い、必要な資格取得もサポートします。',
           images: [
-            '/images/事業所で作業1.png',
-            '/images/パソコンを使った作業.png',
-            '/images/講義.png'
+            officeWork1,
+            pcWork,
+            lecture
           ]
         },
         {
@@ -312,9 +322,9 @@ export default {
           features: ['軽作業', '在宅勤務', '柔軟な時間', '生活支援'],
           description: '軽作業を中心とした就労継続支援B型事業所です。在宅勤務も可能で、一人ひとりの体調や生活リズムに合わせた働き方をサポートします。',
           images: [
-            '/images/事業所で作業2.png',
-            '/images/パソコンを使った学習.png',
-            '/images/支援員が整列してる2.png'
+            officeWork2,
+            pcLearning,
+            staffLineup2
           ]
         },
         {
@@ -327,9 +337,9 @@ export default {
           features: ['生活訓練', '機能訓練', '社会復帰', '医療連携'],
           description: '日常生活や社会生活を営むために必要な訓練を行う自立訓練事業所です。医療機関と連携して、個々の障害特性に応じた支援を提供します。',
           images: [
-            '/images/講義.png',
-            '/images/支援員が整列してる1.png',
-            '/images/説明会でスーツ.png'
+            lecture,
+            staffLineup1,
+            meetingSuit
           ]
         },
         {
@@ -342,9 +352,9 @@ export default {
           features: ['デザイン', 'クリエイティブ', 'ポートフォリオ作成', 'フリーランス支援'],
           description: 'クリエイティブ分野に特化した就労移行支援事業所です。デザイン・映像・音楽などの分野で、プロフェッショナルを目指す方をサポートします。',
           images: [
-            '/images/パソコンを使った作業.png',
-            '/images/パソコンを使った学習.png',
-            '/images/事業所で作業1.png'
+            pcWork,
+            pcLearning,
+            officeWork1
           ]
         }
       ]

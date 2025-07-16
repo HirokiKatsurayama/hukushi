@@ -5,8 +5,8 @@
       <!-- 背景画像 -->
       <div class="absolute inset-0 z-0">
         <img 
-          src="/images/パソコンを使った学習.png" 
-          alt="パソコンを使った学習の様子"
+          :src="pcLearning" 
+          alt="PCを使った学習の様子"
           class="w-full h-full object-cover opacity-20"
         >
         <div class="absolute inset-0 bg-gradient-to-br from-teal-400/80 to-teal-500/80"></div>
@@ -484,6 +484,9 @@
 </template>
 
 <script>
+// Import images
+import pcLearning from '/images/pc-learning.png'
+
 export default {
   name: 'OnlineConsultation',
   data() {

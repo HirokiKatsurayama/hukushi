@@ -1,0 +1,24 @@
+{
+  "name": "fukushi-no-madoguchi",
+  "version": "1.0.0",
+  "description": "福祉の窓口 - 福祉就労支援プラットフォーム",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "vite build && gh-pages -d dist"
+  },
+  "dependencies": {
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "autoprefixer": "^10.4.14",
+    "gh-pages": "^6.3.0",
+    "postcss": "^8.4.24",
+    "tailwindcss": "^3.3.2",
+    "vite": "^4.4.5"
+  }
+}

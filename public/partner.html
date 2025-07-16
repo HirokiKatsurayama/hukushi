@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>人材紹介会社様向け｜福祉の窓口パートナープログラム</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic Medium', Meiryo, sans-serif;
+            background: #f8fafc;
+            overflow: hidden;
+            color: #1f2937;
+        }
+
+        .presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 50px 80px 50px; /* 下部にナビゲーション用のスペース */
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.5s ease-in-out;
+            overflow-y: auto;
+        }
+        
+        .slide {
+            background: #ffffff;
+        }
+        
+        /* 全スライド共通の背景画像 */
+        .slide-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .slide-background img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.12 !important;
+        }
+
+        .slide.active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* 共通スタイル */
+        h1, h2, h3 {
+            color: #1f2937;
+            line-height: 1.3;
+        }
+
+        .highlight {
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 100%;
+        }
+
+        /* スライド1: タイトル */
+        .slide-1 {
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, #f0f9ff 0%, #fafbfc 100%);
+        }
+        
+        .slide-1 .background-image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .slide-1 .background-image-overlay img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.05;
+        }
+
+        .slide-1 .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 1rem;
+        }
+
+        .slide-1 h1 {
+            font-size: 2.8rem;
+            margin-bottom: 2rem;
+            color: #1f2937;
+        }
+
+        .slide-1 .subtitle {
+            font-size: 1.4rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .slide-1 .benefit-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .benefit-card .icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #1e40af;
+        }
+
+        .benefit-card p {
+            font-size: 1rem;
+            color: #6b7280;
+        }
+
+        /* スライド2: 問題提起 */
+        .slide-2 .container {
+            text-align: center;
+        }
+
+        .slide-2 h2 {
+            font-size: 2.4rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .problem-item {
+            background: rgba(254, 242, 242, 0.85);
+            border: 1px solid rgba(254, 202, 202, 0.7);
+            border-radius: 15px;
+            padding: 1.3rem;
+            text-align: left;
+            backdrop-filter: blur(8px);
+        }
+
+        .problem-item .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .problem-item h3 {
+            font-size: 1.2rem;
+            color: #dc2626;
+            margin-bottom: 0.8rem;
+        }
+
+        .problem-item p {
+            font-size: 1rem;
+            color: #7f1d1d;
+            line-height: 1.5;
+        }
+
+        .solution-teaser {
+            background: #ecfdf5;
+            border: 2px solid #34d399;
+            border-radius: 20px;
+            padding: 1.2rem;
+            text-align: center;
+        }
+
+        .solution-teaser h3 {
+            font-size: 1.2rem;
+            color: #059669;
+            margin-bottom: 0.6rem;
+        }
+
+        .solution-teaser p {
+            font-size: 1rem;
+            color: #065f46;
+            line-height: 1.5;
+        }
+
+        /* スライド3: 福祉の窓口とは */
+        .slide-3 .container {
+            text-align: center;
+        }
+
+        .slide-3 h2 {
+            font-size: 2.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .slide-3 .tagline {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-overview {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(229, 231, 235, 0.7);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .service-types {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-type {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .service-type h4 {
+            font-size: 1.2rem;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .service-type p {
+            font-size: 0.9rem;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        .important-note {
+            background: #fff7ed;
+            border: 2px solid #fb923c;
+            border-radius: 15px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .important-note h4 {
+            font-size: 1.2rem;
+            color: #ea580c;
+            margin-bottom: 0.5rem;
+        }
+
+        .important-note p {
+            font-size: 1rem;
+            color: #9a3412;
+        }
+
+        /* スライド4: 実際の声かけ例 */
+        .slide-4 h2 {
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .conversation-container {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(229, 231, 235, 0.7);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .conversation-example {
+            margin-bottom: 2rem;
+        }
+
+        .conversation-example h3 {
+            font-size: 1.3rem;
+            color: #1e40af;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .dialogue {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .message {
+            padding: 1.2rem;
+            border-radius: 12px;
+            max-width: 80%;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .message.staff {
+            background: #eff6ff;
+            border: 2px solid #bfdbfe;
+            align-self: flex-start;
+            border-radius: 20px 20px 20px 5px;
+        }
+
+        .message.client {
+            background: #f3f4f6;
+            border: 2px solid #d1d5db;
+            align-self: flex-end;
+            border-radius: 20px 20px 5px 20px;
+        }
+
+        .message .label {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .key-points {
+            background: #f0fdf4;
+            border: 2px solid #86efac;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .key-points h4 {
+            font-size: 1.2rem;
+            color: #059669;
+            margin-bottom: 1rem;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .key-points li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .key-points li:before {
+            content: "✅";
+            position: absolute;
+            left: 0;
+        }
+
+        /* スライド5: 3つのステップ */
+        .slide-5 h2 {
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(229, 231, 235, 0.7);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .step:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.15);
+        }
+
+        .step::after {
+            content: "→";
+            position: absolute;
+            right: -2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+
+        .step:last-child::after {
+            display: none;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: #3b82f6;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #1f2937;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .time-info {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 10px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #059669;
+            font-weight: 600;
+        }
+
+        /* スライド6: 報酬について */
+        .slide-6 h2 {
+            font-size: 2.4rem;
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .commission-overview {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .commission-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .commission-step {
+            text-align: center;
+            padding: 1.5rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+        }
+
+        .commission-step .step-label {
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .commission-step .amount {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1e40af;
+            margin-bottom: 0.5rem;
+        }
+
+        .commission-step .description {
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        .example-calculation {
+            background: #fffbeb;
+            border: 2px solid #fbbf24;
+            border-radius: 15px;
+            padding: 0.8rem;
+            text-align: center;
+        }
+
+        .example-calculation h4 {
+            font-size: 0.9rem;
+            color: #d97706;
+            margin-bottom: 0.4rem;
+        }
+
+        .calculation-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.2rem;
+            font-size: 0.8rem;
+        }
+
+        .calculation-total {
+            border-top: 2px solid #d97706;
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+            font-weight: bold;
+            font-size: 0.9rem;
+            color: #92400e;
+        }
+
+        /* スライド7: 安心のサポート */
+        .slide-7 h2 {
+            font-size: 2.3rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .support-grid-new {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .support-item {
+            background: rgba(255, 255, 255, 0.95);
+            border: 2px solid rgba(229, 231, 235, 0.7);
+            border-radius: 20px;
+            padding: 1.3rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .support-item .icon {
+            font-size: 1.8rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .support-item h3 {
+            font-size: 1.1rem;
+            color: #1e40af;
+            margin-bottom: 0.6rem;
+        }
+
+        .support-item p {
+            font-size: 0.9rem;
+            color: #6b7280;
+            line-height: 1.5;
+        }
+
+        .zoom-feature {
+            background: rgba(240, 249, 255, 0.95);
+            border: 2px solid rgba(14, 165, 233, 0.7);
+            border-radius: 20px;
+            padding: 1.2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .zoom-feature h3 {
+            font-size: 1.2rem;
+            color: #0369a1;
+            margin-bottom: 0.6rem;
+        }
+
+        .zoom-feature p {
+            font-size: 1rem;
+            color: #0c4a6e;
+            line-height: 1.5;
+        }
+
+        /* スライド8: 今すぐ始める */
+        .slide-8 {
+            background: linear-gradient(135deg, #ecfdf5 0%, #f0fdf4 100%);
+            text-align: center;
+        }
+
+        .slide-8 h2 {
+            font-size: 2.3rem;
+            margin-bottom: 1.5rem;
+            color: #065f46;
+        }
+
+        .slide-8 .message {
+            font-size: 1.1rem;
+            color: #047857;
+            margin-bottom: 1.5rem;
+            line-height: 1.4;
+        }
+
+        .action-steps {
+            background: white;
+            border: 2px solid #34d399;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+        }
+
+        .action-steps h3 {
+            font-size: 1.5rem;
+            color: #059669;
+            margin-bottom: 2rem;
+        }
+
+        .action-list {
+            display: grid;
+            gap: 1rem;
+            text-align: left;
+        }
+
+        .action-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+            color: #064e3b;
+        }
+
+        .action-number {
+            width: 30px;
+            height: 30px;
+            background: #10b981;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .cta-section {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cta-button {
+            background: #10b981;
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .contact-info {
+            font-size: 1rem;
+            color: #047857;
+        }
+
+        /* ナビゲーション */
+        .prev-button {
+            position: fixed;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        
+        .next-button {
+            position: fixed;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 1000;
+        }
+        
+        .slide-info {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+            z-index: 1000;
+        }
+
+        .nav-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-button:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+        }
+
+        .nav-button:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .slide-counter {
+            font-size: 0.9rem;
+            color: #6b7280;
+            font-weight: 600;
+        }
+
+        .slide-dots {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #d1d5db;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .dot.active {
+            background: #3b82f6;
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .prev-button {
+                left: 10px;
+            }
+            
+            .next-button {
+                right: 10px;
+            }
+            
+            .nav-button {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+        }
+        
+        @media (max-width: 1024px) {
+            .slide {
+                padding: 40px 30px;
+            }
+
+            .slide-1 .logo { font-size: 3rem !important; }
+            .slide-1 h1 { font-size: 3.5rem !important; }
+            h1 { font-size: 2.2rem !important; }
+            h2 { font-size: 2rem !important; }
+            
+            .benefit-cards,
+            .problem-grid,
+            .service-types,
+            .steps-container,
+            .commission-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .step::after {
+                display: none;
+            }
+
+            .cta-section {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            /* 6ページ・7ページの特別対応 */
+            .commission-overview > div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            .slide-7 div[style*="grid-template-columns: repeat(2, 1fr)"] {
+                grid-template-columns: 1fr !important;
+            }
+
+            /* 5ページの特別対応 */
+            .slide-5 div[style*="grid-template-columns: 1fr 1fr"] {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        /* アニメーション */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide.active * {
+            animation: slideInUp 0.6s ease-out forwards;
+        }
+
+        .slide.active *:nth-child(1) { animation-delay: 0.1s; }
+        .slide.active *:nth-child(2) { animation-delay: 0.2s; }
+        .slide.active *:nth-child(3) { animation-delay: 0.3s; }
+        .slide.active *:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="presentation-container">
+        <!-- スライド1: タイトル -->
+        <div class="slide slide-1 active">
+            <!-- 透明な背景画像 -->
+            <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; overflow: hidden; z-index: 0;">
+                <img src="images/pc-learning.png" alt="背景" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.12 !important;">
+            </div>
+            <!-- コンテンツ -->
+            <div class="container" style="position: relative; z-index: 1;">
+                <div class="logo" style="font-size: 5rem; margin-bottom: 2.5rem; font-weight: 900;">福祉の窓口</div>
+                <h1 style="font-size: 5.5rem; font-weight: 800; line-height: 1.1;">提携パートナー向け資料</h1>
+            </div>
+        </div>
+
+        <!-- スライド2: サービス概要 -->
+        <div class="slide slide-2">
+            <!-- 透明な背景画像 -->
+            <div class="slide-background">
+                <img src="images/pc-learning.png" alt="背景">
+            </div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <h2 style="text-align: center; margin-bottom: 1.5rem; font-size: 2.2rem;">紹介困難な求職者が<br><span class="highlight">安定収入</span>に変わる</h2>
+                <p style="text-align: center; font-size: 1.2rem; color: #6b7280; margin-bottom: 2.5rem;">パートナープログラムのご案内</p>
+                
+                <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+                    <div class="benefit-card" style="padding: 1.5rem; flex: 1; min-width: 200px; max-width: 300px;">
+                        <div class="icon" style="font-size: 2rem; margin-bottom: 0.8rem;">💰</div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem;">シンプル報酬</h3>
+                        <p style="font-size: 0.9rem;">1件3,000円</p>
+                    </div>
+                    <div class="benefit-card" style="padding: 1.5rem; flex: 1; min-width: 200px; max-width: 300px;">
+                        <div class="icon" style="font-size: 2rem; margin-bottom: 0.8rem;">⏱️</div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem;">簡単作業</h3>
+                        <p style="font-size: 0.9rem;">登録3分で完了</p>
+                    </div>
+                    <div class="benefit-card" style="padding: 1.5rem; flex: 1; min-width: 200px; max-width: 300px;">
+                        <div class="icon" style="font-size: 2rem; margin-bottom: 0.8rem;">🤝</div>
+                        <h3 style="font-size: 1.1rem; margin-bottom: 0.3rem;">安心サポート</h3>
+                        <p style="font-size: 0.9rem;">専任担当制</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド3: 問題提起 -->
+        <div class="slide slide-3">
+            <!-- 透明な背景画像 -->
+            <div class="slide-background">
+                <img src="images/pc-learning.png" alt="背景">
+            </div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <h2>今まで<span class="highlight">諦めていた求職者</span>が収益になる</h2>
+                
+                <div class="problem-grid">
+                    <div class="problem-item">
+                        <div class="icon">😔</div>
+                        <h3>転職が長期化した方</h3>
+                        <p>企業への紹介が難しく、対応に時間を取られていた求職者さん</p>
+                    </div>
+                    <div class="problem-item">
+                        <div class="icon">📊</div>
+                        <h3>スキルはあるがマッチングしない方</h3>
+                        <p>能力はあるものの、企業の求める条件と微妙にズレている求職者さん</p>
+                    </div>
+                    <div class="problem-item">
+                        <div class="icon">💸</div>
+                        <h3>メンタル不調で休職中の方</h3>
+                        <p>体調を崩して休職中で、復帰を目指しているがサポートが難しい方</p>
+                    </div>
+                    <div class="problem-item">
+                        <div class="icon">❓</div>
+                        <h3>年齢や経歴で紹介が困難な方</h3>
+                        <p>年齢や経歴の関係で企業への紹介が難しく、対応に困っていた方</p>
+                    </div>
+                </div>
+
+                <div class="solution-teaser">
+                    <h3>✨ 実は、こんな方々が新しい収益源に！</h3>
+                    <p>「福祉の窓口」なら、今まで諦めていた求職者さんもしっかりサポートできます</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド4: 福祉の窓口とは -->
+        <div class="slide slide-4">
+            <!-- 透明な背景画像 -->
+            <div class="slide-background">
+                <img src="images/pc-learning.png" alt="背景">
+            </div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <h2><span class="highlight">福祉の窓口</span>とは</h2>
+                <p class="tagline">障害者の就労を支援する総合サイトです</p>
+                
+                <div class="service-overview">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 2rem; color: #1e40af;">3つのサービスで就労をサポート</h3>
+                    
+                    <div class="service-types">
+                        <div class="service-type">
+                            <h4>A型事業所</h4>
+                            <p>雇用契約を結んで<br>働く場所<br>（時給あり）</p>
+                        </div>
+                        <div class="service-type">
+                            <h4>B型事業所</h4>
+                            <p>自分のペースで<br>働く場所<br>（工賃あり）</p>
+                        </div>
+                        <div class="service-type">
+                            <h4>就労移行支援</h4>
+                            <p>就職のための<br>訓練を受ける場所<br>（無料）</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="important-note">
+                    <h4>⚠️ アフィリエイト対象条件</h4>
+                    <p><strong>無料Zoom相談への送客1件につき3,000円</strong><br>
+                    ※ 障害者手帳をお持ち、または精神疾患の診断を受けた方のみ対象<br>
+                    <small>弊社実績：就職困難者の60%が既に条件を満たしています</small></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド5: 実際の声かけ例 -->
+        <div class="slide slide-5">
+            <!-- 透明な背景画像 -->
+            <div class="slide-background">
+                <img src="images/pc-learning.png" alt="背景">
+            </div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <h2 style="text-align: center; margin-bottom: 2rem;">実際の<span class="highlight">声かけ例</span></h2>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: start;">
+                    <div class="conversation-container" style="margin-bottom: 0;">
+                        <div class="conversation-example">
+                            <h3 style="font-size: 1.1rem; margin-bottom: 1rem;">💬 転職活動が長期化している方への案内例</h3>
+                            
+                            <div class="dialogue">
+                                <div class="message staff" style="padding: 1rem; font-size: 0.9rem;">
+                                    <div class="label">あなた（営業マン）</div>
+                                    転職活動、なかなか思うようにいかないですね。実は、素晴らしいサポートプログラムがあるんです。「福祉の窓口」で、完全無料でサポートしてくれるんですよ。
+                                </div>
+                                
+                                <div class="message client" style="padding: 1rem; font-size: 0.9rem;">
+                                    <div class="label">求職者</div>
+                                    それは興味深いですね。どんなサポートなんですか？
+                                </div>
+                                
+                                <div class="message staff" style="padding: 1rem; font-size: 0.9rem;">
+                                    <div class="label">あなた（営業マン）</div>
+                                    Zoomでの無料相談から始まって、あなたに合った働き方を一緒に見つけてくれます。まずは無料相談だけでも受けてみませんか？
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="key-points" style="margin-top: 0;">
+                        <h4>🔑 成功のポイント</h4>
+                        <ul>
+                            <li>「障害者」という言葉は使わない</li>
+                            <li>「無料」「専門サポート」を強調</li>
+                            <li>「まずは相談だけ」で心理的ハードルを下げる</li>
+                            <li>Zoom相談の手軽さをアピール</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド6: 3つのステップ -->
+        <div class="slide slide-6">
+            <!-- 透明な背景画像 -->
+            <div class="slide-background">
+                <img src="images/pc-learning.png" alt="背景">
+            </div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <h2><span class="highlight">たった3ステップ</span>で報酬獲得</h2>
+                
+                <div class="steps-container">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <h3>申込み・ご連絡</h3>
+                        <p>求職者本人がフォームから面談申込、または御社担当者が福祉の窓口スタッフに直接ご連絡ください</p>
+                        <div class="time-info">⏱️ フォームまたは電話・メールで連絡</div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <h3>福祉の窓口スタッフが対応</h3>
+                        <p>福祉の窓口スタッフが求職者に直接連絡し、Zoom面談を設定・実施いたします</p>
+                        <div class="time-info">✨ あなたの作業：0分</div>
+                    </div>
+                    
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <h3>報酬お支払い</h3>
+                        <p>無料Zoom相談が実施されると3,000円の報酬が発生。福祉の窓口スタッフから結果をご報告</p>
+                        <div class="time-info">💰 1件3,000円</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド7: 報酬について -->
+        <div class="slide slide-7">
+            <!-- 透明な背景画像 -->
+            <div class="slide-background">
+                <img src="images/pc-learning.png" alt="背景">
+            </div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <h2><span class="highlight">シンプル報酬</span>システム</h2>
+                
+                <div class="commission-overview">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-bottom: 1rem;">
+                        <div style="background: #f0f9ff; border: 3px solid #0369a1; border-radius: 20px; padding: 1rem; text-align: center;">
+                            <h3 style="font-size: 1.1rem; color: #0369a1; margin-bottom: 0.3rem;">無料Zoom相談</h3>
+                            <div style="font-size: 2rem; font-weight: 800; color: #1e40af; margin: 0.3rem 0;">¥3,000</div>
+                            <p style="font-size: 0.8rem; color: #0c4a6e;">1件につき報酬発生</p>
+                            <p style="font-size: 0.75rem; color: #16a34a; margin-top: 0.3rem; font-weight: 600;">
+                                🎯 インセンティブ<br>月10件につき1万円
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="example-calculation">
+                    <h4>📊 収益シミュレーション</h4>
+                    <div class="calculation-row">
+                        <span>月10件のZoom相談実施</span>
+                        <span>¥30,000</span>
+                    </div>
+                    <div class="calculation-row">
+                        <span>月20件のZoom相談実施</span>
+                        <span>¥60,000</span>
+                    </div>
+                    <div class="calculation-row">
+                        <span>月30件のZoom相談実施</span>
+                        <span>¥90,000</span>
+                    </div>
+                    <div class="calculation-total">
+                        <div class="calculation-row">
+                            <span>💡 1日1件でも月収3万円！</span>
+                            <span>安定収入</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド8: 安心のサポート -->
+        <div class="slide slide-8">
+            <!-- 透明な背景画像 -->
+            <div class="slide-background">
+                <img src="images/pc-learning.png" alt="背景">
+            </div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <h2><span class="highlight">安心のサポート</span>体制</h2>
+                
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 1.5rem;">
+                    <div class="support-item">
+                        <div class="icon">📋</div>
+                        <h3>完全マニュアル提供</h3>
+                        <p>求職者への説明方法、よくある質問への回答例など、すぐに使える資料をご提供</p>
+                    </div>
+                    <div class="support-item">
+                        <div class="icon">💻</div>
+                        <h3>専任担当スタッフ</h3>
+                        <p>お客様専任の福祉の窓口スタッフが進捗状況や報酬の発生状況を随時ご報告</p>
+                    </div>
+                    <div class="support-item">
+                        <div class="icon">📞</div>
+                        <h3>専任サポート</h3>
+                        <p>分からないことがあれば、専任の福祉の窓口スタッフがすぐにサポート。安心して始められます</p>
+                    </div>
+                    <div class="support-item">
+                        <div class="icon">📊</div>
+                        <h3>詳細レポート</h3>
+                        <p>月次の活動報告、収益レポートを自動生成。成果が一目で分かります</p>
+                    </div>
+                </div>
+
+                <div class="zoom-feature">
+                    <h3>🎥 Zoom無料相談の強み</h3>
+                    <p>
+                        福祉の窓口スタッフが求職者と直接Zoom相談を実施。「まずはオンラインで気軽に相談してみませんか？」という案内で、求職者の心理的ハードルを大幅に下げることができます。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- スライド9: 今すぐ始める -->
+        <div class="slide slide-9">
+            <!-- 透明な背景画像 -->
+            <div class="slide-background">
+                <img src="images/pc-learning.png" alt="背景">
+            </div>
+            <div class="container" style="position: relative; z-index: 1;">
+                <h2>今すぐ<span class="highlight">始めませんか？</span></h2>
+                <p class="message">
+                    初期費用・月額費用は一切不要<br>
+                    完全成果報酬型のパートナーシップ
+                </p>
+
+                <div class="action-steps">
+                    <h3>🚀 開始までの流れ</h3>
+                    <div class="action-list">
+                        <div class="action-item">
+                            <span class="action-number">1</span>
+                            <span>パートナー契約締結</span>
+                        </div>
+                        <div class="action-item">
+                            <span class="action-number">2</span>
+                            <span>専用フォームお渡し</span>
+                        </div>
+                        <div class="action-item">
+                            <span class="action-number">3</span>
+                            <span>福祉の窓口スタッフと連携開始</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cta-section">
+                    <div class="contact-info">
+                        <p>📧 お問い合わせ：partner@fukushi-madoguchi.jp</p>
+                        <p>📞 電話相談：0120-XXX-XXXX（平日9-18時）</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ナビゲーション -->
+        <button class="nav-button prev-button" id="prevBtn" onclick="changeSlide(-1)">←</button>
+        <button class="nav-button next-button" id="nextBtn" onclick="changeSlide(1)">→</button>
+        
+        <div class="slide-info">
+            <div class="slide-dots" id="dots"></div>
+            <span class="slide-counter"><span id="current">1</span> / <span id="total">9</span></span>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        document.getElementById('total').textContent = totalSlides;
+
+        // ドット生成
+        function createDots() {
+            const dotsContainer = document.getElementById('dots');
+            for (let i = 0; i < totalSlides; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'dot';
+                if (i === 0) dot.classList.add('active');
+                dot.onclick = () => goToSlide(i);
+                dotsContainer.appendChild(dot);
+            }
+        }
+
+        function updateDots() {
+            document.querySelectorAll('.dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlideIndex);
+            });
+        }
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle('active', i === index);
+            });
+            
+            updateDots();
+            document.getElementById('current').textContent = index + 1;
+            
+            // ボタン状態更新
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === totalSlides - 1;
+        }
+
+        function changeSlide(direction) {
+            currentSlideIndex += direction;
+            if (currentSlideIndex < 0) currentSlideIndex = 0;
+            if (currentSlideIndex >= totalSlides) currentSlideIndex = totalSlides - 1;
+            showSlide(currentSlideIndex);
+        }
+
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            showSlide(currentSlideIndex);
+        }
+
+        // キーボード操作
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+            if (e.key === 'f' || e.key === 'F') {
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                } else {
+                    document.exitFullscreen();
+                }
+            }
+        });
+
+        // タッチ操作
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            if (touchEndX < touchStartX - 50) changeSlide(1);
+            if (touchEndX > touchStartX + 50) changeSlide(-1);
+        });
+
+        // 初期化
+        createDots();
+        showSlide(0);
+
+        console.log('💡 Fキーでフルスクリーン、矢印キーでスライド操作');
+    </script>
+</body>
+</html>

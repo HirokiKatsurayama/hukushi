@@ -87,11 +87,6 @@
               </router-link>
             </li>
             <li>
-              <router-link to="/document-request" class="text-gray-300 hover:text-white transition-colors">
-                資料請求
-              </router-link>
-            </li>
-            <li>
               <router-link to="/contact#general" class="text-gray-300 hover:text-white transition-colors">
                 一般お問い合わせ
               </router-link>

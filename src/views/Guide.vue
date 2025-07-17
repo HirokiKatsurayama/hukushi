@@ -134,6 +134,7 @@ export default {
   name: 'Guide',
   data() {
     return {
+      lecture,
       openFaq: null,
       articles: [
         {

@@ -119,7 +119,7 @@
             <div class="md:col-span-2">
               <h3 class="text-2xl font-bold mb-3">気になる事業所は見つかりましたか？</h3>
               <p class="text-lg opacity-90 mb-4">
-                まずは資料請求や見学で、実際の雰囲気を確認してみましょう。<br>
+                まずは見学で、実際の雰囲気を確認してみましょう。<br>
                 専門スタッフが無料でご相談に応じます。
               </p>
               <div class="flex items-center gap-4 text-sm">
@@ -260,6 +260,14 @@ export default {
   name: 'Centers',
   data() {
     return {
+      pcWork,
+      pcLearning,
+      lecture,
+      officeWork1,
+      officeWork2,
+      staffLineup1,
+      staffLineup2,
+      meetingSuit,
       searchForm: {
         prefecture: '',
         serviceType: '',

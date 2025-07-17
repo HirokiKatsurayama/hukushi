@@ -82,7 +82,7 @@
                   </svg>
                 </div>
                 <h3 class="text-xl font-semibold mb-2 text-white">完全無料</h3>
-                <p class="text-lg text-gray-300">見学も資料請求も<br>すべて無料です</p>
+                <p class="text-lg text-gray-300">見学も相談も<br>すべて無料です</p>
               </div>
               <div class="text-center">
                 <div class="w-16 h-16 bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">

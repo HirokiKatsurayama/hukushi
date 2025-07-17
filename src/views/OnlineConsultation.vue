@@ -491,6 +491,7 @@ export default {
   name: 'OnlineConsultation',
   data() {
     return {
+      pcLearning,
       currentStep: 1,
       steps: [
         { number: 1, label: '相談内容' },

@@ -111,6 +111,7 @@ export default {
   name: 'Services',
   data() {
     return {
+      pcWork,
       serviceTypes: [
         {
           id: 'a-type',

@@ -525,6 +525,7 @@ export default {
   name: 'TourBooking',
   data() {
     return {
+      meetingSuit,
       currentStep: 1,
       steps: [
         { number: 1, label: '施設選択' },

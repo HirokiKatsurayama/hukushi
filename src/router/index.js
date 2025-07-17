@@ -9,7 +9,6 @@ import Reviews from '../views/Reviews.vue'
 import Guide from '../views/Guide.vue'
 import Contact from '../views/Contact.vue'
 import Admin from '../views/Admin.vue'
-import DocumentRequest from '../views/DocumentRequest.vue'
 import TourBooking from '../views/TourBooking.vue'
 import OnlineConsultation from '../views/OnlineConsultation.vue'
 
@@ -63,11 +62,6 @@ const routes = [
     path: '/admin',
     name: 'Admin',
     component: Admin
-  },
-  {
-    path: '/document-request',
-    name: 'DocumentRequest',
-    component: DocumentRequest
   },
   {
     path: '/tour-booking',
